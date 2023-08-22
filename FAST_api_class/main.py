@@ -1,13 +1,12 @@
 from typing import Union
 from fastapi import FastAPI
+import employee
+from db_setup import SessionLocal, engine
 
-from models import employee
-# Will create a table in database
 employee.Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI()
-
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
